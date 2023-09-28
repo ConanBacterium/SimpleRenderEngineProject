@@ -4,25 +4,73 @@
 
 namespace ExampleGame {
 	class ComponentController : public MyEngine::Component {
-		float rotSpeed = 50;
-		float movSpeed = 5;
-		float movAmount = 20;
-		glm::vec2 movDirection = glm::vec2(1, 0);
+		float RotSpeed = 50;
+		float MovSpeed = 5;
+		float MovAmount = 20;
+		glm::vec2 MovDirection = glm::vec2(1, 0);
 
 	public:
 		glm::vec2 position;
-		float rotaiton;
+		float rotation;
+		int moveSpeed;
 
 		void Init() override;
 		void Update(float) override;
 
-		void SetRotSpeed(int speed) {
-			rotSpeed = speed;
-		}
-		int GetRotSpeed() {
-			return rotSpeed;
+		void SetSpeed(float speed) {
+			MovSpeed = speed;
+		};
+
+		float GetSpeed() {
+			return MovSpeed;
+		};
+
+		void SetRotSpeed(float rotspeed) {
+			RotSpeed = rotspeed;
+		};
+
+		float GetRotSpeed() {
+			return RotSpeed;
+		};
+	};
+
+	class MeteoriteController : public MyEngine::Component {
+		float MovSpeed;
+		float RotSpeed;
+		float BasePos;
+
+	public:
+
+		float rotation;
+
+		glm::vec2 position;
+		glm::vec2 MovDirection = glm::vec2(1, 0);
+
+
+		void Init() override;
+		void Update(float) override;
+
+		// -------------- SETTERS --------------
+
+		void SetBasePos(float position) {
+			BasePos = position;
 		}
 
-		//void 
+		void SetSpeed(float speed) {
+			MovSpeed = speed;
+		}
+
+		// -------------- GETTERS --------------
+
+		float GetBasePos() {
+			return BasePos;
+		}
+
+
+		float GetMovSpeed() {
+			return MovSpeed;
+		}
 	};
+
+
 }
