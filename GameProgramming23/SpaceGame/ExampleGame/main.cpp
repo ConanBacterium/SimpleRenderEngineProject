@@ -45,7 +45,7 @@ int main() {
 	Player->AddComponent(componentController);
 	Player->AddComponent(componentRenderer);
 
-	componentRenderer->sprite = atlas->get("playerShip2_orange.png");
+	componentRenderer->sprite = atlas->get("playerShip3_green.png");
 	componentController->SetSpeed(20);
 
 	engine.Init();
@@ -58,7 +58,7 @@ int main() {
 	Meteorite->AddComponent(MeteoriteController);
 	Meteorite->AddComponent(MeteoriteRenderer);
 
-	MeteoriteRenderer->sprite = atlas->get("meteorBrown_big4.png");
+	MeteoriteRenderer->sprite = atlas->get("meteorBrown_big1.png");
 	MeteoriteController->SetSpeed(20);
 	MeteoriteController->SetBasePos(0.5f);
 
@@ -71,7 +71,7 @@ int main() {
 	Meteorite2->AddComponent(MeteoriteRenderer2);
 
 
-	MeteoriteRenderer2->sprite = atlas->get("meteorBrown_big4.png");
+	MeteoriteRenderer2->sprite = atlas->get("meteorBrown_big1.png");
 	MeteoriteController2->SetSpeed(20);
 	MeteoriteController2->SetBasePos(0.2f);
 
@@ -91,6 +91,7 @@ void ProcessEvents(SDL_Event& event) {
 		// Check the specific key
 		if (event.key.keysym.sym == SDLK_SPACE) {
 			printf("I pressed space\n");
+			
 		}
 
 		if (event.key.keysym.sym == SDLK_w) {
