@@ -26,6 +26,9 @@ namespace ExampleGame {
 		void SetMovAmount(int amount) {
 			movAmount = amount;
 		}
+		void SetMovDirection(glm::vec2 direction) {
+			movDirection = direction;
+		}
 
 		//void 
 	};

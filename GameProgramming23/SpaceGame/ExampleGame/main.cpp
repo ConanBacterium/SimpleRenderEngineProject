@@ -56,10 +56,11 @@ int main() {
 }
 
 void ProcessEvents(SDL_Event& event) {
+	// need to get ref to playerController... playerController is given as a component to player, who is in turn created by CreateGameObject in engine... 
 	if (event.type == SDL_KEYDOWN) {
 		printf("keydown\n");
 		if (event.key.keysym.sym == SDLK_a) {
-			
+			//playerController->Set // need to get ref to playerController... playerController is given as a component to player, who is in turn created by CreateGameObject in engine... 
 		}
 
 	}
