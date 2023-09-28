@@ -48,6 +48,7 @@ int main() {
 	meteor1->AddComponent(meteor1Controller);
 	meteor1->AddComponent(meteor1Renderer);
 	meteor1Controller->SetRotSpeed(10);
+	meteor1Controller->SetMovAmount(1);
 	meteor1Renderer->sprite = atlas->get("meteorGrey_big1.png");
 
 	engine.Init();

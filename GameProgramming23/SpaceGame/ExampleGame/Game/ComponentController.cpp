@@ -4,16 +4,21 @@
 
 namespace ExampleGame {
 	void ComponentController::Init() {
+		MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
+		basePos = engine->GetScreenSize() / 2.f;
+
+		MyEngine::GameObject* parent = GetGameObject();
+		parent->position = basePos;
+
 	}
 
 	void ComponentController::Update(float deltaTime) {
 		MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
 		MyEngine::GameObject* parent = GetGameObject();
-
-		glm::vec2 basePos = engine->GetScreenSize() / 2.f;
+		printf("update form component controller update func");
 
 		parent->rotation += rotSpeed * deltaTime;
-		parent->position = basePos + movDirection * movAmount;
+		parent->position = parent->position + movDirection * movAmount;
 		//parent->position = basePos + movDirection * movAmount * glm::sin(movSpeed * engine->GetTime());
 	}
 }
