@@ -23,7 +23,7 @@ namespace ExampleGame {
         ComponentController::movAmount = 1.0f + static_cast<float>(rand()) / RAND_MAX * 99.0f;
 
         float dirX = 2.0f * (static_cast<float>(rand()) / RAND_MAX) - 1.0f;
-        float dirY = 2.0f * (static_cast<float>(rand()) / RAND_MAX) - 1.0f;
+        float dirY = -static_cast<float>(rand()) / RAND_MAX;
         ComponentController::movDirection = glm::normalize(glm::vec2(dirX, dirY));
 
         float posX = static_cast<float>(rand()) / RAND_MAX * 1000.0f;

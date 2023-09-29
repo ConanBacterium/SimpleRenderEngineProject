@@ -33,10 +33,41 @@ namespace MyEngine {
 		_root->KeyEvent(event);
 	}
 
+	void Engine::DetectCollisions() {
+
+		// CHAT GPT GENERATED OPTIMIZATION OF THE BELOW FLAWED VERSION 
+		for (auto it1 = _root->_children.begin(); it1 != _root->_children.end(); ++it1) {
+			auto it2 = it1;
+			++it2;  // Start from the next element
+			for (; it2 != _root->_children.end(); ++it2) {
+				float dist = glm::distance((*it1)->position, (*it2)->position);
+				if (dist <= (*it1)->radius + (*it2)->radius) {
+					printf("COLLISION");
+					(*it1)->_collisions.push(*it2);
+					(*it2)->_collisions.push(*it1);
+				}
+			}
+		}
+
+
+		/*
+		for (auto& child1 : _root->_children) {
+			for (auto& child2 : _root->_children) {
+				float dist = glm::distance(child1->position, child2->position); 
+				if (dist <= child1->radius + child2->radius) {
+					child1->_collisions.push(child2);
+					child2->_collisions.push(child1);
+				}
+			}
+		}
+		*/
+	}
+
 	void Engine::Update(float deltaTime) {
 		++frame;
 		time += deltaTime;
 		_root->Update(deltaTime);
+		DetectCollisions();
 	}
 
 	void Engine::Render()

@@ -42,6 +42,7 @@ int main() {
 	player->AddComponent(playerRenderer);
 	playerController->SetRotSpeed(0);
 	playerRenderer->sprite = atlas->get("playerShip1_blue.png");
+	player->radius = 50;
 
 	// METEOR 
 	auto meteor1 = engine.CreateGameObject("Meteor1");
@@ -50,6 +51,8 @@ int main() {
 	meteor1->AddComponent(meteor1Controller);
 	meteor1->AddComponent(meteor1Renderer);
 	meteor1Renderer->sprite = atlas->get("meteorGrey_big1.png");
+	meteor1->radius = 50;
+
 
 	engine.Init();
 	meteor1Controller->InitMeteor();
