@@ -30,7 +30,7 @@ namespace MyEngine {
 		std::string GetName();
 		void SetName(std::string);
 
-		std::queue<std::shared_ptr<GameObject>> _collisions; // this ought to be private ? doesn't matter now
+		std::queue<std::shared_ptr<GameObject>> _collisions; // this ought to be private ? doesn't matter now. UPDATE: Engine is friend so should have access?
 
 	protected: 
 		std::list<std::shared_ptr<GameObject>> _children = {}; // _root needs to go through all children do do collision detection... 
