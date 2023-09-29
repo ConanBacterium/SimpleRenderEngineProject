@@ -17,8 +17,8 @@ namespace ExampleGame {
 
 		glm::vec2 basePos = engine->GetScreenSize() / 2.f;
 
-		parent->rotation += RotSpeed * deltaTime;
-		parent->position = basePos + MovDirection * MovAmount;
+		parent->rotation += RotSpeed;
+		parent->position = basePos + MovDirection;
 
 
 	}

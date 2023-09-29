@@ -4,7 +4,7 @@
 
 namespace ExampleGame {
 	class ComponentController : public MyEngine::Component {
-		float RotSpeed = 50;
+		float RotSpeed = 0;
 		float MovSpeed = 5;
 		float MovAmount = 20;
 		glm::vec2 MovDirection = glm::vec2(1, 0);
