@@ -58,29 +58,14 @@ int main() {
 
 	//first
 	auto Meteorite = engine.CreateGameObject("GameObject");
-	auto MeteoriteController = std::shared_ptr<ExampleGame::MeteoriteController>(new ExampleGame::MeteoriteController());
+	auto MeteoriteCon = std::shared_ptr<ExampleGame::MeteoriteController>(new ExampleGame::MeteoriteController());
 	auto MeteoriteRenderer = std::make_shared<ExampleGame::MeteoriteRendererSprite>();
-	Meteorite->AddComponent(MeteoriteController);
+	Meteorite->AddComponent(MeteoriteCon);
 	Meteorite->AddComponent(MeteoriteRenderer);
 
 	MeteoriteRenderer->sprite = atlas->get("meteorBrown_big1.png");
-	MeteoriteController->SetSpeed(20);
-	MeteoriteController->SetBasePos(0.5f);
-
-
-	//second
-	auto Meteorite2 = engine.CreateGameObject("GameObject");
-	auto MeteoriteController2 = std::shared_ptr<ExampleGame::MeteoriteController>(new ExampleGame::MeteoriteController());
-	auto MeteoriteRenderer2 = std::make_shared<ExampleGame::MeteoriteRendererSprite>();
-
-	Meteorite2->AddComponent(MeteoriteController2);
-	Meteorite2->AddComponent(MeteoriteRenderer2);
-
-
-	MeteoriteRenderer2->sprite = atlas->get("meteorBrown_big1.png");
-	MeteoriteController2->SetSpeed(20);
-	MeteoriteController2->SetBasePos(0.2f);
-
+	MeteoriteCon->SetSpeed(20);
+	MeteoriteCon->SetBasePos(0.5f);
 
 	engine.Init();
 	renderer.startEventLoop();

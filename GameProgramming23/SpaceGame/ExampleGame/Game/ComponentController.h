@@ -36,43 +36,5 @@ namespace ExampleGame {
 		};
 	};
 
-	class MeteoriteController : public MyEngine::Component {
-		float MovSpeed;
-		float RotSpeed;
-		float BasePos;
-
-	public:
-
-		float rotation;
-
-		glm::vec2 position;
-		glm::vec2 MovDirection = glm::vec2(1, 0);
-
-
-		void Init() override;
-		void Update(float) override;
-
-		// -------------- SETTERS --------------
-
-		void SetBasePos(float position) {
-			BasePos = position;
-		}
-
-		void SetSpeed(float speed) {
-			MovSpeed = speed;
-		}
-
-		// -------------- GETTERS --------------
-
-		float GetBasePos() {
-			return BasePos;
-		}
-
-
-		float GetMovSpeed() {
-			return MovSpeed;
-		}
-	};
-
-
+	
 }
