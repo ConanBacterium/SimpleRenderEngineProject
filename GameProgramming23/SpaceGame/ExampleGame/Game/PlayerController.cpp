@@ -22,6 +22,7 @@ namespace ExampleGame {
                 break;
             case SDLK_w:
                 printf("keypress w\n");
+                ComponentController::SetSpeed(100);
                 break;
             case SDLK_s:
                 printf("keypress s\n");
@@ -36,6 +37,7 @@ namespace ExampleGame {
         }
         else if (event.type == SDL_KEYUP) {
             ComponentController::SetRotSpeed(0);
+            ComponentController::SetSpeed(0);
 
         }
     }
@@ -45,10 +47,16 @@ namespace ExampleGame {
         MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
         MyEngine::GameObject* parent = GetGameObject();
 
-        glm::vec2 basePos = engine->GetScreenSize() / 2.f;
+
+        float rotationRadians = glm::radians(parent->rotation + 90);
+
+        // Convert rotation into a glm vector (unit vector)
+        MovDirection.x = glm::cos(rotationRadians);
+        MovDirection.y = glm::sin(rotationRadians);
+
 
         parent->rotation += RotSpeed * deltaTime;
-        parent->position = basePos + MovDirection;
+        parent->position = parent->position + MovDirection * MovSpeed * deltaTime;
 
 
     }

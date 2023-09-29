@@ -7,8 +7,8 @@ namespace ExampleGame {
 
 	protected:
 		float RotSpeed = 0;
-		float MovSpeed = 5;
-		float MovAmount = 20;
+		float MovSpeed = 0;
+		float MovAmount = 0;
 		glm::vec2 MovDirection = glm::vec2(1, 0);
 
 	public:
