@@ -16,7 +16,7 @@ namespace ExampleGame {
 		MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
 		MyEngine::GameObject* parent = GetGameObject();
 
-		parent->rotation += rotSpeed * deltaTime;
+		parent->rotation += rotSpeed;
 		parent->position = parent->position + movDirection * movAmount;
 		//parent->position = basePos + movDirection * movAmount * glm::sin(movSpeed * engine->GetTime());
 	}

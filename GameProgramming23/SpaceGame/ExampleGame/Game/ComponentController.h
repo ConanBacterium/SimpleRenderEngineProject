@@ -4,7 +4,9 @@
 
 namespace ExampleGame {
 	class ComponentController : public MyEngine::Component {
-		float rotSpeed = 50;
+		
+	protected:
+		float rotSpeed = 0;
 		float movSpeed = 5;
 		float movAmount = 0;
 		glm::vec2 movDirection = glm::vec2(1, 0);
@@ -12,12 +14,12 @@ namespace ExampleGame {
 
 	public:
 		glm::vec2 position;
-		float rotaiton;
+		float rotation;
 
 		void Init() override;
 		void Update(float) override;
 
-		void SetRotSpeed(int speed) {
+		void SetRotSpeed(float speed) {
 			rotSpeed = speed;
 		}
 		int GetRotSpeed() {
