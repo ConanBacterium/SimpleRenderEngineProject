@@ -8,6 +8,9 @@
 
 #include "Game/ComponentController.h"
 #include "Game/ComponentRendererSprite.h"
+#include "Game/PlayerController.h"
+
+
 
 void InitGame();
 void ProcessEvents(SDL_Event& event);
@@ -25,7 +28,6 @@ std::chrono::steady_clock::time_point endTime;
 std::random_device rd;
 std::mt19937 gen(rd());
 std::uniform_int_distribution<int> distribution(3000, 5000); // Random time between 3 and 5 seconds in milliseconds
-std::shared_ptr<ExampleGame::ComponentController> PlayerController = nullptr;
 
 
 int main() {
@@ -43,15 +45,13 @@ int main() {
 	atlas = sre::SpriteAtlas::create("data/space.json", "data/space.png");
 
 	auto Player = engine.CreateGameObject("GameObject");
-	auto componentController = std::shared_ptr<ExampleGame::ComponentController>(new ExampleGame::ComponentController());
+	auto PlayerController = std::shared_ptr<ExampleGame::PlayerController>(new ExampleGame::PlayerController());
 	auto componentRenderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
-	Player->AddComponent(componentController);
+	Player->AddComponent(PlayerController);
 	Player->AddComponent(componentRenderer);
 
 	componentRenderer->sprite = atlas->get("playerShip3_green.png");
-	componentController->SetSpeed(20);
-
-	PlayerController = componentController;
+	PlayerController->SetSpeed(20);
 
 	engine.Init();
 
@@ -87,66 +87,7 @@ int main() {
 }
 
 void ProcessEvents(SDL_Event& event) {
-	// Check the type of the event
-	if (event.type == SDL_QUIT) {
-		// The user closed the window
-		// Handle window close event
-	}
-	else if (event.type == SDL_KEYDOWN) {
-		// A key was pressed
-		// Check the specific key
-		if (event.key.keysym.sym == SDLK_SPACE) {
-			printf("I pressed space\n");
-			
-			
-		}
-
-		if (event.key.keysym.sym == SDLK_w) {
-			printf("Pressed w \n");
-			if (PlayerController) {
-				// Increase the speed of the specific meteorite controller
-				PlayerController->SetSpeed(PlayerController->GetSpeed() + 10); // Example: Increase speed by 10 units
-				printf("Speed is: %f\n", PlayerController->GetSpeed());
-			}
-		}
-
-		if (event.key.keysym.sym == SDLK_d) {
-			printf("Pressed d \n");
-			if (PlayerController) {
-				// Increase the speed of the specific meteorite controller
-				PlayerController->SetRotSpeed(-1); // Example: Increase speed by 10 units
-				printf("Speed is: %f\n", PlayerController->GetRotSpeed());
-			}
-		}
-
-		if (event.key.keysym.sym == SDLK_a) {
-			printf("Pressed a \n");
-			if (PlayerController) {
-				// Increase the speed of the specific meteorite controller
-				PlayerController->SetRotSpeed(1); // Example: Increase speed by 10 units
-				printf("Speed is: %f\n", PlayerController->GetRotSpeed());
-			}
-		}
-
-		if (event.key.keysym.sym == SDLK_s) {
-			printf("Pressed s \n");
-			if (PlayerController) {
-				// Increase the speed of the specific meteorite controller
-				PlayerController->SetSpeed(PlayerController->GetSpeed() - 10); // Example: Increase speed by 10 units
-				printf("Speed is: %f \n", PlayerController->GetSpeed());
-			}
-		}
-		// Add more key checks as needed for other keys
-	}
-	else if (event.type == SDL_KEYUP) {
-		if (PlayerController) {
-			// Increase the speed of the specific meteorite controller
-			PlayerController->SetRotSpeed(0); // Example: Increase speed by 10 units
-			printf("Speed is: %f\n", PlayerController->GetRotSpeed());
-		}
-
-	}
-	// Add more event types as needed (e.g., SDL_MOUSEBUTTONDOWN)
+	engine.ProcessEvents(event);
 }
 
 void Update(float deltaTime) {

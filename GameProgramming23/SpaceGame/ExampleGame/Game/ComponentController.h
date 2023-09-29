@@ -4,6 +4,8 @@
 
 namespace ExampleGame {
 	class ComponentController : public MyEngine::Component {
+
+	protected:
 		float RotSpeed = 0;
 		float MovSpeed = 5;
 		float MovAmount = 20;
