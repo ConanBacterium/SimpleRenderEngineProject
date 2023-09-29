@@ -6,6 +6,7 @@
 #include "Game/ComponentController.h"
 #include "Game/ComponentRendererSprite.h"
 #include "Game/PlayerController.h"
+#include "Game/MeteoriteController.h"
 
 #include <thread>
 
@@ -44,15 +45,14 @@ int main() {
 
 	// METEOR 
 	auto meteor1 = engine.CreateGameObject("Meteor1");
-	auto meteor1Controller = std::shared_ptr<ExampleGame::ComponentController>(new ExampleGame::ComponentController());
+	auto meteor1Controller = std::shared_ptr<ExampleGame::MeteoriteController>(new ExampleGame::MeteoriteController());
 	auto meteor1Renderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
 	meteor1->AddComponent(meteor1Controller);
 	meteor1->AddComponent(meteor1Renderer);
-	meteor1Controller->SetRotSpeed(10);
-	meteor1Controller->SetMovAmount(1);
 	meteor1Renderer->sprite = atlas->get("meteorGrey_big1.png");
 
 	engine.Init();
+	meteor1Controller->InitMeteor();
 	renderer.startEventLoop();
 }
 
