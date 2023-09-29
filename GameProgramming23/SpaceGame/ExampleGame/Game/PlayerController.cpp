@@ -14,18 +14,18 @@ namespace ExampleGame {
         if (event.type == SDL_KEYDOWN) {
             switch (event.key.keysym.sym) {
                 case SDLK_a:
-                    printf("keypress a\n");
-                    ComponentController::SetRotSpeed(1.0);
+                    ComponentController::SetRotSpeed(100.0);
                     break;
                 case SDLK_w: 
-                    printf("keypress w\n");
+                    //ComponentController::SetMovAmount();
+                    ComponentController::SetMovAmount(100);
                     break;
                 case SDLK_s:
                     printf("keypress s\n");
                     break;
                 case SDLK_d:
                     printf("keypress d\n");
-                    ComponentController::SetRotSpeed(-1.0);
+                    ComponentController::SetRotSpeed(-100.0);
                     break;
                 default:
                     break;
@@ -33,6 +33,8 @@ namespace ExampleGame {
         }
         if (event.type == SDL_KEYUP) {
             ComponentController:SetRotSpeed(0.0);
+            ComponentController::SetMovAmount(0);
+            
         }
     }
 
@@ -40,8 +42,17 @@ namespace ExampleGame {
         MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
         MyEngine::GameObject* parent = GetGameObject();
 
-        parent->rotation += rotSpeed;
-        parent->position = parent->position + movDirection * movAmount;
+        // rotation is in degrees, need to make it into a glm vector and set movDirection to it 
+        // Convert rotation to radians
+        float rotationRadians = glm::radians(parent->rotation + 90);
+
+        // Convert rotation into a glm vector (unit vector)
+        movDirection.x = glm::cos(rotationRadians);
+        movDirection.y = glm::sin(rotationRadians);
+
+
+        parent->rotation += rotSpeed * deltaTime;
+        parent->position = parent->position + movDirection * movAmount*deltaTime;
     }
 
 }  // namespace ExampleGame

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ComponentController.h"
+#include "Engine/Component.h"
 
 namespace ExampleGame {
 
