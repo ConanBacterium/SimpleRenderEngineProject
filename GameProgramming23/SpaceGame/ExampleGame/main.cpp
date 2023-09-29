@@ -5,6 +5,7 @@
 
 #include "Game/ComponentController.h"
 #include "Game/ComponentRendererSprite.h"
+#include "Game/PlayerController.h"
 
 #include <thread>
 
@@ -34,7 +35,7 @@ int main() {
 
 	// PLAYER 
 	auto player = engine.CreateGameObject("PlayerObject");
-	auto playerController = std::shared_ptr<ExampleGame::ComponentController>(new ExampleGame::ComponentController());
+	auto playerController = std::shared_ptr<ExampleGame::PlayerController>(new ExampleGame::PlayerController());
 	auto playerRenderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
 	player->AddComponent(playerController);
 	player->AddComponent(playerRenderer);
@@ -56,14 +57,8 @@ int main() {
 }
 
 void ProcessEvents(SDL_Event& event) {
-	// need to get ref to playerController... playerController is given as a component to player, who is in turn created by CreateGameObject in engine... 
-	if (event.type == SDL_KEYDOWN) {
-		printf("keydown\n");
-		if (event.key.keysym.sym == SDLK_a) {
-			//playerController->Set // need to get ref to playerController... playerController is given as a component to player, who is in turn created by CreateGameObject in engine... 
-		}
-
-	}
+	engine.ProcessEvents(event);
+	
 }
 
 void Update(float deltaTime) {

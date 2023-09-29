@@ -15,7 +15,6 @@ namespace ExampleGame {
 	void ComponentController::Update(float deltaTime) {
 		MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
 		MyEngine::GameObject* parent = GetGameObject();
-		printf("update form component controller update func");
 
 		parent->rotation += rotSpeed * deltaTime;
 		parent->position = parent->position + movDirection * movAmount;

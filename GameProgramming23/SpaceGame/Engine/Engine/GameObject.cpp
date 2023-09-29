@@ -33,11 +33,13 @@ namespace MyEngine {
 	}
 
 	void GameObject::KeyEvent(SDL_Event& e) {
-		for (auto& component : _components)
+		for (auto& component : _components) {
 			component->KeyEvent(e);
+		}
 
-		for (auto& child : _children)
+		for (auto& child : _children) {
 			child->KeyEvent(e);
+		}
 	}
 
 	void GameObject::AddChild(std::shared_ptr<GameObject> p_object) {
