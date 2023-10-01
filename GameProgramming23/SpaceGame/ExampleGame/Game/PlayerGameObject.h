@@ -8,7 +8,7 @@ namespace ExampleGame {
 
     class PlayerGameObject : public MyEngine::GameObject {
     public:
-        void Update(float) override;
+        void Update(float deltaTime) override;
     };
 
 }  // namespace ExampleGame

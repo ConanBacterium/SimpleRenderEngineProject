@@ -20,7 +20,7 @@ namespace MyEngine {
 		int radius;
 
 		void Init();
-		void Update(float);
+		virtual void Update(float deltaTime);
 		void Render(sre::SpriteBatch::SpriteBatchBuilder&);
 		void KeyEvent(SDL_Event&);
 
