@@ -12,4 +12,4 @@ namespace ExampleGame {
         // ... Any other member functions or data members specific to PlayerController ...
     };
 
-}  // namespace ExampleGame
+}

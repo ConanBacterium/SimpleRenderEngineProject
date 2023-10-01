@@ -2,12 +2,12 @@
 #include "Engine/MyEngine.h"
 #include "sre/SDLRenderer.hpp"
 
+
 namespace ExampleGame {
 
     void MeteoriteController::Update(float deltaTime) {
         MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
         MyEngine::GameObject* parent = GetGameObject();
-
        
         parent->rotation += rotSpeed * deltaTime;
         parent->position = parent->position + movDirection * movAmount * deltaTime;
@@ -34,4 +34,4 @@ namespace ExampleGame {
     }
 
 
-}  // namespace ExampleGame
+}

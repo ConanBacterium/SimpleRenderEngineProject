@@ -1,8 +1,13 @@
 #include "ComponentController.h"
 
+
 #include "Engine/MyEngine.h"
 
 namespace ExampleGame {
+
+	bool ObjectOut = false;
+
+
 	void ComponentController::Init() {
 		MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
 

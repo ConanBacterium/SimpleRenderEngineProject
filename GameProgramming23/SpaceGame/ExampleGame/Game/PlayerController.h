@@ -11,5 +11,4 @@ namespace ExampleGame {
         virtual void Update(float deltaTime) override;
         // ... Any other member functions or data members specific to PlayerController ...
     };
-
 }  // namespace ExampleGame

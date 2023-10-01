@@ -1,5 +1,8 @@
 #include "sre/SDLRenderer.hpp"
 #include "sre/SpriteAtlas.hpp"
+#include <random>
+#include <thread>
+
 
 #include "Engine/MyEngine.h"
 
@@ -7,9 +10,6 @@
 #include "Game/ComponentRendererSprite.h"
 #include "Game/PlayerController.h"
 #include "Game/MeteoriteController.h"
-
-#include <thread>
-
 
 void InitGame();
 void ProcessEvents(SDL_Event& event);
@@ -22,6 +22,12 @@ glm::vec2 window_size = glm::vec2(800, 600);
 sre::SDLRenderer renderer;
 sre::Camera camera;
 std::shared_ptr<sre::SpriteAtlas> atlas;
+std::chrono::steady_clock::time_point startTime;
+std::chrono::steady_clock::time_point endTime;
+std::random_device rd;
+std::mt19937 gen(rd());
+std::uniform_int_distribution<int> distribution(3000, 5000); // Random time between 3 and 5 seconds in milliseconds
+
 
 int main() {
 	renderer.frameRender = Render;
@@ -31,6 +37,9 @@ int main() {
 	renderer.setWindowSize(window_size);
 	renderer.init();
 	camera.setWindowCoordinates();
+
+	auto startTime = std::chrono::high_resolution_clock::now();
+
 
 	atlas = sre::SpriteAtlas::create("data/space.json", "data/space.png");
 
@@ -53,7 +62,6 @@ int main() {
 	meteor1Renderer->sprite = atlas->get("meteorGrey_big1.png");
 	meteor1->radius = 50;
 
-
 	engine.Init();
 	meteor1Controller->InitMeteor();
 	renderer.startEventLoop();
@@ -61,7 +69,6 @@ int main() {
 
 void ProcessEvents(SDL_Event& event) {
 	engine.ProcessEvents(event);
-	
 }
 
 void Update(float deltaTime) {
@@ -70,4 +77,5 @@ void Update(float deltaTime) {
 
 void Render() {
 	engine.Render();
+
 }

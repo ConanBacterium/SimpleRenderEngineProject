@@ -12,4 +12,11 @@ namespace ExampleGame {
 
 		void Render(sre::SpriteBatch::SpriteBatchBuilder&) override;
 	};
+
+	class MeteoriteRendererSprite : public MyEngine::Component {
+	public:
+		sre::Sprite sprite;
+
+		void Render(sre::SpriteBatch::SpriteBatchBuilder&) override;
+	};
 }
