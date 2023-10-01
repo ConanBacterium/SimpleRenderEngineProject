@@ -40,6 +40,7 @@ namespace MyEngine {
 		GameObject* CreateGameObject(std::string name);
 
 	private:
+		void DetectCollisions();
 		std::shared_ptr<GameObject> _root;
 
 		std::chrono::time_point<std::chrono::steady_clock>	time_start;

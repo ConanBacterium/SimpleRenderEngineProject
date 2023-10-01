@@ -4,8 +4,7 @@
 
 namespace MyEngine {
 	GameObject* Component::GetGameObject() {
-		if (_gameObject.expired())
-		{
+		if (_gameObject.expired()) {
 			Logger::Log("Invalid game object");
 			return nullptr;
 		}

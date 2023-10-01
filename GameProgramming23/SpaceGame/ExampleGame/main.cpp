@@ -9,8 +9,7 @@
 #include "Game/ComponentController.h"
 #include "Game/ComponentRendererSprite.h"
 #include "Game/PlayerController.h"
-
-
+#include "Game/MeteoriteController.h"
 
 void InitGame();
 void ProcessEvents(SDL_Event& event);
@@ -44,30 +43,27 @@ int main() {
 
 	atlas = sre::SpriteAtlas::create("data/space.json", "data/space.png");
 
-	auto Player = engine.CreateGameObject("GameObject");
-	auto PlayerController = std::shared_ptr<ExampleGame::PlayerController>(new ExampleGame::PlayerController());
-	auto componentRenderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
-	Player->AddComponent(PlayerController);
-	Player->AddComponent(componentRenderer);
+	// PLAYER 
+	auto player = engine.CreateGameObject("PlayerObject");
+	auto playerController = std::shared_ptr<ExampleGame::PlayerController>(new ExampleGame::PlayerController());
+	auto playerRenderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
+	player->AddComponent(playerController);
+	player->AddComponent(playerRenderer);
+	playerController->SetRotSpeed(0);
+	playerRenderer->sprite = atlas->get("playerShip1_blue.png");
+	player->radius = 50;
 
-	componentRenderer->sprite = atlas->get("playerShip3_green.png");
-	PlayerController->SetSpeed(20);
-
-	engine.Init();
-
-
-	//first
-	auto Meteorite = engine.CreateGameObject("GameObject");
-	auto MeteoriteCon = std::shared_ptr<ExampleGame::MeteoriteController>(new ExampleGame::MeteoriteController());
-	auto MeteoriteRenderer = std::make_shared<ExampleGame::MeteoriteRendererSprite>();
-	Meteorite->AddComponent(MeteoriteCon);
-	Meteorite->AddComponent(MeteoriteRenderer);
-
-	MeteoriteRenderer->sprite = atlas->get("meteorBrown_big1.png");
-	MeteoriteCon->SetSpeed(20);
-	MeteoriteCon->SetBasePos(0.5f);
+	// METEOR 
+	auto meteor1 = engine.CreateGameObject("Meteor1");
+	auto meteor1Controller = std::shared_ptr<ExampleGame::MeteoriteController>(new ExampleGame::MeteoriteController());
+	auto meteor1Renderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
+	meteor1->AddComponent(meteor1Controller);
+	meteor1->AddComponent(meteor1Renderer);
+	meteor1Renderer->sprite = atlas->get("meteorGrey_big1.png");
+	meteor1->radius = 50;
 
 	engine.Init();
+	meteor1Controller->InitMeteor();
 	renderer.startEventLoop();
 }
 
@@ -77,11 +73,9 @@ void ProcessEvents(SDL_Event& event) {
 
 void Update(float deltaTime) {
 	engine.Update(deltaTime);
-
 }
 
 void Render() {
 	engine.Render();
-
 
 }
