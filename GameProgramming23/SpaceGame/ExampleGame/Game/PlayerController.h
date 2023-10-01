@@ -6,6 +6,8 @@
 namespace ExampleGame {
 
     class PlayerController : public ComponentController {
+    protected: 
+        glm::vec2 basePos;
     public:
         virtual void KeyEvent(SDL_Event& e) override;
         virtual void Update(float deltaTime) override;

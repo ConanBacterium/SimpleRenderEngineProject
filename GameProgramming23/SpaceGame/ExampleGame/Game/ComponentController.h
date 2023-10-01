@@ -31,7 +31,5 @@ namespace ExampleGame {
 		void SetMovDirection(glm::vec2 direction) {
 			movDirection = direction;
 		}
-
-		//void 
 	};
 }

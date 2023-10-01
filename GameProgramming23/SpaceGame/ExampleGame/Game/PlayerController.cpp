@@ -53,6 +53,7 @@ namespace ExampleGame {
 
         parent->rotation += rotSpeed * deltaTime;
         parent->position = parent->position + movDirection * movAmount*deltaTime;
+        basePos = parent->position;
     }
 
 }  // namespace ExampleGame
