@@ -55,4 +55,4 @@ namespace ExampleGame {
         parent->position = parent->position + movDirection * movAmount*deltaTime;
     }
 
-} 
+}  // namespace ExampleGame

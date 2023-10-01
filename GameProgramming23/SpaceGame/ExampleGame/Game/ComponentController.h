@@ -32,14 +32,6 @@ namespace ExampleGame {
 			movDirection = direction;
 		}
 
-		void SetRotSpeed(float rotspeed) {
-			RotSpeed = rotspeed;
-		};
-
-		float GetRotSpeed() {
-			return RotSpeed;
-		};
+		//void 
 	};
-
-	
 }
