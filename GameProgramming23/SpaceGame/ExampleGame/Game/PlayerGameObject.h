@@ -4,6 +4,7 @@
 #include "Engine/Component.h"
 
 namespace ExampleGame {
+
     class GameObject;
 
     class PlayerGameObject : public MyEngine::GameObject {
