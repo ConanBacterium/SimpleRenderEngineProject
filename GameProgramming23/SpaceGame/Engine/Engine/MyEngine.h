@@ -7,11 +7,15 @@
 #include "SDL.h"
 
 #include "GameObject.h"
+//#include "../../ExampleGame/Game/enums.h"
+//#include "../../ExampleGame/Game/PlayerGameObject.h"
 
 
 class GameObject;
 
 namespace MyEngine {
+	class PlayerGameObject;
+
 	class Engine {
 	private:
 		static Engine* _instance;
@@ -37,6 +41,7 @@ namespace MyEngine {
 		int GetFrame() const { return frame; }
 		float GetTime() const { return time; }
 
+		//GameObject* CreateGameObject(std::string name, GameObjectType type);
 		GameObject* CreateGameObject(std::string name);
 
 	private:

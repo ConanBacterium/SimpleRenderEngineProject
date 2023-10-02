@@ -20,7 +20,7 @@ namespace MyEngine {
 		int radius;
 
 		void Init();
-		void Update(float);
+		virtual void Update(float deltaTime);
 		void Render(sre::SpriteBatch::SpriteBatchBuilder&);
 		void KeyEvent(SDL_Event&);
 
@@ -34,11 +34,11 @@ namespace MyEngine {
 
 	protected: 
 		std::list<std::shared_ptr<GameObject>> _children = {}; // _root needs to go through all children do do collision detection... 
+		std::weak_ptr<GameObject> _self;
 
 		// private fields
 	private:
 		std::weak_ptr<GameObject> _parent;
-		std::weak_ptr<GameObject> _self;
 		std::list< std::shared_ptr<Component>> _components = {};
 		std::string _name;
 	};

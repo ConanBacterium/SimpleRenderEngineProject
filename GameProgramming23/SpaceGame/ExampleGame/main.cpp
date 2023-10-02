@@ -10,6 +10,8 @@
 #include "Game/PlayerController.h"
 #include "Game/MeteoriteController.h"
 
+//#include "../../ExampleGame/Game/enums.h"
+
 #include <thread>
 
 
@@ -40,6 +42,7 @@ int main() {
 
 
 	// PLAYER 
+	//auto player = engine.CreateGameObject("PlayerObject", PLAYER);
 	auto player = engine.CreateGameObject("PlayerObject");
 	auto playerController = std::shared_ptr<ExampleGame::PlayerController>(new ExampleGame::PlayerController());
 	auto playerRenderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
@@ -50,6 +53,7 @@ int main() {
 	player->radius = 50;
 
 	// METEOR 
+	//auto meteor1 = engine.CreateGameObject("Meteor1", GENERIC);
 	auto meteor1 = engine.CreateGameObject("Meteor1");
 	auto meteor1Controller = std::shared_ptr<ExampleGame::MeteoriteController>(new ExampleGame::MeteoriteController());
 	auto meteor1Renderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
