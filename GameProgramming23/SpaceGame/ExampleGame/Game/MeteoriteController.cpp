@@ -11,20 +11,34 @@ namespace ExampleGame {
     void MeteoriteController::Update(float deltaTime) {
         MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
         MyEngine::GameObject* parent = GetGameObject();
+        auto currentTime = std::chrono::high_resolution_clock::now();
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<float> dist(1000, 5000); //number of miliseconds
 
-       
+        std::cout << "Generated seconds:" << dist(gen) << std::endl;
+
+        //solve this
+        std::chrono::duration<double> elapsedTime = currentTime - ComponentController::start;
+
+        //if duration than spawn meteorite 
+
+
+        //start the meteor here based on th elapsed time
+        InitMeteor();
         parent->rotation += rotSpeed * deltaTime;
         parent->position = parent->position + movDirection * movAmount * deltaTime;
     }
 
     void MeteoriteController::InitMeteor() {
-
-
-
         // NEED CONSTRAINT ONLY GO DOWN 
         MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
         MyEngine::GameObject* parent = GetGameObject();
         srand(static_cast<unsigned int>(time(nullptr)));
+
+
+
+        ComponentController::start;
 
         const float HEIGHT = engine->GetScreenSize().y;
         const float WIDTH = engine->GetScreenSize().x;

@@ -11,6 +11,8 @@ namespace ExampleGame {
 		float movAmount = 0;
 		glm::vec2 movDirection = glm::vec2(1, 0);
 		glm::vec2 basePos;
+		std::chrono::high_resolution_clock start;
+
 
 	public:
 		glm::vec2 position;
