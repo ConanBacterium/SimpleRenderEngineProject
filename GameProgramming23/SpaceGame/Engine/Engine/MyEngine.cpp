@@ -3,6 +3,8 @@
 #include <random>
 
 #include "sre/RenderPass.hpp"
+#include <iostream>
+
 //#include "../../ExampleGame/Game/enums.h"
 
 
@@ -44,17 +46,26 @@ namespace MyEngine {
 			for (auto it2 = std::next(it1); it2 != _root->_children.end();) {
 				float dist = glm::distance((*it1)->position, (*it2)->position);
 				if (dist <= (*it1)->radius + (*it2)->radius) {
-					printf("COLLISION");
-					(*it1)->_collisions.push(*it2);
-					(*it2)->_collisions.push(*it1);
+					if ((*it1)->GetName().find("Meteor") != std::string::npos && (*it2)->GetName().find("Meteor") != std::string::npos) {
+						printf("Meteors collided");
+					}else {
+						std::cout << (*it2)->GetName() << std::endl;
 
-					// Add it1 and it2 to deleteQueue
-					deleteQueue.push(std::distance(_root->_children.begin(), it1));
-					deleteQueue.push(std::distance(_root->_children.begin(), it2));
 
-					// Erase it2 and update the iterator
-					it2 = _root->_children.erase(it2);
-					it1Deleted = true;
+						printf("COLLISION\n");
+						(*it1)->_collisions.push(*it2);
+						(*it2)->_collisions.push(*it1);
+
+						// Add it1 and it2 to deleteQueue
+						deleteQueue.push(std::distance(_root->_children.begin(), it1));
+						deleteQueue.push(std::distance(_root->_children.begin(), it2));
+
+						// Erase it2 and update the iterator
+						it2 = _root->_children.erase(it2);
+						it1Deleted = true;
+					}
+
+
 				}
 				else {
 					++it2;
@@ -112,7 +123,7 @@ namespace MyEngine {
 		++frame;
 		time += deltaTime;
 		_root->Update(deltaTime);
-		DetectCollisions();
+		//DetectCollisions();
 	}
 
 	void Engine::Render()

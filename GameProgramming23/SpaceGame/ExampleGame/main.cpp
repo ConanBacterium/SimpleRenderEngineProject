@@ -62,7 +62,60 @@ int main() {
 	meteor1Renderer->sprite = atlas->get("meteorBrown_big1.png");
 	meteor1->radius = 50;
 
-	// LAZER 
+	meteor1Controller->InitMeteor();
+
+	// METEOR 
+	//auto meteor1 = engine.CreateGameObject("Meteor1", GENERIC);
+	auto meteor2 = engine.CreateGameObject("Meteor2");
+	auto meteor2Controller = std::shared_ptr<ExampleGame::MeteoriteController>(new ExampleGame::MeteoriteController());
+	auto meteor2Renderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
+	meteor2->AddComponent(meteor2Controller);
+	meteor2->AddComponent(meteor2Renderer);
+	meteor2Renderer->sprite = atlas->get("meteorBrown_big1.png");
+	meteor2->radius = 50;
+
+	meteor2Controller->InitMeteor();
+
+	// METEOR 
+//auto meteor1 = engine.CreateGameObject("Meteor1", GENERIC);
+	auto meteor3 = engine.CreateGameObject("Meteor3");
+	auto meteor3Controller = std::shared_ptr<ExampleGame::MeteoriteController>(new ExampleGame::MeteoriteController());
+	auto meteor3Renderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
+	meteor3->AddComponent(meteor3Controller);
+	meteor3->AddComponent(meteor3Renderer);
+	meteor3Renderer->sprite = atlas->get("meteorBrown_big1.png");
+	meteor3->radius = 50;
+
+	meteor3Controller->InitMeteor();
+
+	// METEOR 
+//auto meteor1 = engine.CreateGameObject("Meteor1", GENERIC);
+	auto meteor4 = engine.CreateGameObject("Meteor4");
+	auto meteor4Controller = std::shared_ptr<ExampleGame::MeteoriteController>(new ExampleGame::MeteoriteController());
+	auto meteor4Renderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
+	meteor4->AddComponent(meteor4Controller);
+	meteor4->AddComponent(meteor4Renderer);
+	meteor4Renderer->sprite = atlas->get("meteorBrown_big1.png");
+	meteor4->radius = 50;
+
+	meteor4Controller->InitMeteor();
+
+	// METEOR 
+//auto meteor1 = engine.CreateGameObject("Meteor1", GENERIC);
+	auto meteor5 = engine.CreateGameObject("Meteor5");
+	auto meteor5Controller = std::shared_ptr<ExampleGame::MeteoriteController>(new ExampleGame::MeteoriteController());
+	auto meteor5Renderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
+	meteor5->AddComponent(meteor5Controller);
+	meteor5->AddComponent(meteor5Renderer);
+	meteor5Renderer->sprite = atlas->get("meteorBrown_big1.png");
+	meteor5->radius = 50;
+
+	meteor5Controller->InitMeteor();
+
+
+	// LAZER
+	
+	/*
 	auto lazer = engine.CreateGameObject("Lazer");
 	auto lazerController = std::shared_ptr<ExampleGame::LazerController>(new ExampleGame::LazerController());
 	auto lazerRenderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
@@ -70,9 +123,9 @@ int main() {
 	lazer->AddComponent(lazerRenderer);
 	meteor1Renderer->sprite = atlas->get("laserBlue01.png");
 	lazer->radius = 50;
+	*/
 
 	engine.Init();
-	meteor1Controller->InitMeteor();
 	renderer.startEventLoop();
 }
 

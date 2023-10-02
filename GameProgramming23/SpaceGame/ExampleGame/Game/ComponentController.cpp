@@ -6,15 +6,16 @@ namespace ExampleGame {
 	void ComponentController::Init() {
 		MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
 
-		basePos = engine->GetScreenSize() / 2.f;
+		//basePos = engine->GetScreenSize() / 2.f;
 		
 		MyEngine::GameObject* parent = GetGameObject();
-		parent->position = basePos;
+		//parent->position = basePos;
 	}
 
 	void ComponentController::Update(float deltaTime) {
 		MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
 		MyEngine::GameObject* parent = GetGameObject();
+
 
 		parent->rotation += rotSpeed * deltaTime;
 
