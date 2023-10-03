@@ -11,7 +11,7 @@ namespace ExampleGame {
 		float movAmount = 0;
 		glm::vec2 movDirection = glm::vec2(1, 0);
 		glm::vec2 basePos;
-		std::chrono::high_resolution_clock start;
+		//std::chrono::high_resolution_clock start;
 
 
 	public:
@@ -27,7 +27,7 @@ namespace ExampleGame {
 		int GetRotSpeed() {
 			return rotSpeed;
 		}
-		void SetMovAmount(int amount) {
+		void SetMovAmount(float amount) {
 			movAmount = amount;
 		}
 		void SetMovDirection(glm::vec2 direction) {

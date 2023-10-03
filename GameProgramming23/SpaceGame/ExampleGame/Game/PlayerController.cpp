@@ -32,8 +32,27 @@ namespace ExampleGame {
             }
         }
         if (event.type == SDL_KEYUP) {
-            ComponentController:SetRotSpeed(0.0);
-            ComponentController::SetMovAmount(0);
+
+            switch (event.key.keysym.sym) {
+            case SDLK_a:
+                ComponentController:SetRotSpeed(0.0);
+                break;
+            case SDLK_w:
+                //ComponentController::SetMovAmount();
+                for (float i = 100.0; i > 0.0; i= i - 0.5) { //kinda smoother stop
+                    ComponentController::SetMovAmount(i);
+                }
+                break;
+            case SDLK_s:
+                printf("keypress s\n");
+                break;
+            case SDLK_d:
+                printf("keypress d\n");
+                ComponentController::SetRotSpeed(0.0);
+                break;
+            default:
+                break;
+            }
             
         }
     }

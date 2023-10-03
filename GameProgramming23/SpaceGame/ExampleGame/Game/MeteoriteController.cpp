@@ -3,31 +3,43 @@
 #include "sre/SDLRenderer.hpp"
 #include <ctime>
 #include <random>
+#include<windows.h>
 
 
 
 namespace ExampleGame {
 
+    bool restart = false;
+    float height = 0.0f;
+    float width = 0.0f;
+
     void MeteoriteController::Update(float deltaTime) {
         MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
         MyEngine::GameObject* parent = GetGameObject();
-        auto currentTime = std::chrono::high_resolution_clock::now();
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_real_distribution<float> dist(1000, 5000); //number of miliseconds
 
-        std::cout << "Generated seconds:" << dist(gen) << std::endl;
+        //auto currentTime = std::chrono::high_resolution_clock::now();
+        //std::random_device rd;
+        //std::mt19937 gen(rd());
+        //std::uniform_real_distribution<float> dist(1000, 5000); //number of miliseconds
+
+        //std::cout << "Generated seconds:" << dist(gen) << std::endl;
 
         //solve this
-        std::chrono::duration<double> elapsedTime = currentTime - ComponentController::start;
+        //std::chrono::duration<double> elapsedTime = currentTime - ComponentController::start;
 
         //if duration than spawn meteorite 
 
 
         //start the meteor here based on th elapsed time
-        InitMeteor();
+        //InitMeteor();
         parent->rotation += rotSpeed * deltaTime;
         parent->position = parent->position + movDirection * movAmount * deltaTime;
+        //get the initial position location
+
+        if (parent->position.y <= -25.0) {
+            printf("Meteor out of screen.");
+            InitMeteor();
+        }
     }
 
     void MeteoriteController::InitMeteor() {
@@ -36,11 +48,7 @@ namespace ExampleGame {
         MyEngine::GameObject* parent = GetGameObject();
         srand(static_cast<unsigned int>(time(nullptr)));
 
-
-
-        ComponentController::start;
-
-        const float HEIGHT = engine->GetScreenSize().y;
+        const float HEIGHT = engine->GetScreenSize().y + 20.0; // add some space so teh asteroid doesnt spawn in visible screen
         const float WIDTH = engine->GetScreenSize().x;
 
         std::random_device rd;
