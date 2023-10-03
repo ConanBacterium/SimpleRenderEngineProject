@@ -41,16 +41,6 @@ int main() {
 	auto startTime = std::chrono::high_resolution_clock::now();
 
 
-	// PLAYER 
-	//auto player = engine.CreateGameObject("PlayerObject", PLAYER);
-	auto player = engine.CreateGameObject("PlayerObject");
-	auto playerController = std::shared_ptr<ExampleGame::PlayerController>(new ExampleGame::PlayerController());
-	auto playerRenderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
-	player->AddComponent(playerController);
-	player->AddComponent(playerRenderer);
-	playerController->SetRotSpeed(0);
-	playerRenderer->sprite = atlas->get("playerShip1_blue.png");
-	player->radius = 50;
 
 	// METEOR 
 	//auto meteor1 = engine.CreateGameObject("Meteor1", GENERIC);
@@ -114,16 +104,26 @@ int main() {
 
 
 	// LAZER
-	
-	/*
 	auto lazer = engine.CreateGameObject("Lazer");
 	auto lazerController = std::shared_ptr<ExampleGame::LazerController>(new ExampleGame::LazerController());
 	auto lazerRenderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
 	lazer->AddComponent(lazerController);
 	lazer->AddComponent(lazerRenderer);
-	meteor1Renderer->sprite = atlas->get("laserBlue01.png");
+	lazerRenderer->sprite = atlas->get("laserBlue01.png");
 	lazer->radius = 50;
-	*/
+
+
+	// PLAYER 
+	//auto player = engine.CreateGameObject("PlayerObject", PLAYER);
+	auto player = engine.CreateGameObject("PlayerObject");
+	auto playerController = std::shared_ptr<ExampleGame::PlayerController>(new ExampleGame::PlayerController());
+	auto playerRenderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
+	player->AddComponent(playerController);
+	player->AddComponent(playerRenderer);
+	playerController->SetRotSpeed(0);
+	playerRenderer->sprite = atlas->get("playerShip1_blue.png");
+	player->radius = 50;
+	
 
 	engine.Init();
 	renderer.startEventLoop();

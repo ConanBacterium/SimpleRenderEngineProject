@@ -3,6 +3,7 @@
 #include "sre/SDLRenderer.hpp"
 
 namespace ExampleGame {
+    glm::vec2 basePos;
 
     void PlayerController::KeyEvent(SDL_Event& event) {
         // Implement your key event logic specific to PlayerController here
@@ -17,14 +18,9 @@ namespace ExampleGame {
                     ComponentController::SetRotSpeed(100.0);
                     break;
                 case SDLK_w: 
-                    //ComponentController::SetMovAmount();
                     ComponentController::SetMovAmount(100);
                     break;
-                case SDLK_s:
-                    printf("keypress s\n");
-                    break;
                 case SDLK_d:
-                    printf("keypress d\n");
                     ComponentController::SetRotSpeed(-100.0);
                     break;
                 default:
@@ -44,10 +40,8 @@ namespace ExampleGame {
                 }
                 break;
             case SDLK_s:
-                printf("keypress s\n");
                 break;
             case SDLK_d:
-                printf("keypress d\n");
                 ComponentController::SetRotSpeed(0.0);
                 break;
             default:
@@ -73,6 +67,16 @@ namespace ExampleGame {
         parent->rotation += rotSpeed * deltaTime;
         parent->position = parent->position + movDirection * movAmount*deltaTime;
         basePos = parent->position;
+    }
+
+    glm::vec2 PlayerController::GetPosition() {
+        MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
+        MyEngine::GameObject* parent = GetGameObject();
+
+        printf("\nPlayer return func:");
+        printf((std::to_string(parent->position.x)).c_str());
+        printf((std::to_string(parent->position.y)).c_str());
+        return basePos;
     }
 
 }  // namespace ExampleGame
