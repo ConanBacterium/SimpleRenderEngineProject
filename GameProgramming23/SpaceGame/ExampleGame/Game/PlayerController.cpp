@@ -27,6 +27,8 @@ namespace ExampleGame {
                     printf("keypress d\n");
                     ComponentController::SetRotSpeed(-100.0);
                     break;
+                case SDLK_SPACE: 
+                    printf("SHOOT! \n");
                 default:
                     break;
             }
@@ -34,7 +36,6 @@ namespace ExampleGame {
         if (event.type == SDL_KEYUP) {
             ComponentController:SetRotSpeed(0.0);
             ComponentController::SetMovAmount(0);
-            
         }
     }
 

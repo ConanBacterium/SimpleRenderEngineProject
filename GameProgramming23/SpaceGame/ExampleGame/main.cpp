@@ -7,6 +7,7 @@
 #include "Game/ComponentRendererSprite.h"
 #include "Game/PlayerController.h"
 #include "Game/MeteoriteController.h"
+#include "Game/LazerController.h"
 
 //#include "../../ExampleGame/Game/enums.h"
 
@@ -34,7 +35,7 @@ int main() {
 	renderer.init();
 	camera.setWindowCoordinates();
 
-	atlas = sre::SpriteAtlas::create("data/space.json", "data/space.png");
+	atlas = sre::SpriteAtlas::create("data/space_3.json", "data/space_3.png");
 
 	// PLAYER 
 	//auto player = engine.CreateGameObject("PlayerObject", PLAYER);
@@ -44,7 +45,7 @@ int main() {
 	player->AddComponent(playerController);
 	player->AddComponent(playerRenderer);
 	playerController->SetRotSpeed(0);
-	playerRenderer->sprite = atlas->get("playerShip1_blue.png");
+	playerRenderer->sprite = atlas->get("playerShip3_green.png");
 	player->radius = 50;
 
 	// METEOR 
@@ -54,9 +55,19 @@ int main() {
 	auto meteor1Renderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
 	meteor1->AddComponent(meteor1Controller);
 	meteor1->AddComponent(meteor1Renderer);
-	meteor1Renderer->sprite = atlas->get("meteorGrey_big1.png");
+	meteor1Renderer->sprite = atlas->get("meteorBrown_big1.png");
 	meteor1->radius = 50;
 
+	// LAZER
+	
+	auto lazer = engine.CreateGameObject("Lazer");
+	auto lazerController = std::shared_ptr<ExampleGame::LazerController>(new ExampleGame::LazerController());
+	auto lazerRenderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
+	lazer->AddComponent(lazerController);
+	lazer->AddComponent(lazerRenderer);
+	lazerRenderer->sprite = atlas->get("meteorBrown_small1.png");
+	lazer->radius = 28;
+	
 
 	engine.Init();
 	meteor1Controller->InitMeteor();

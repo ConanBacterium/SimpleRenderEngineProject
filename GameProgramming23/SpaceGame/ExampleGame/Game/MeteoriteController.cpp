@@ -14,6 +14,7 @@ namespace ExampleGame {
     }
 
     void MeteoriteController::InitMeteor() {
+        printf("InitMeteor");
 
         // NEED CONSTRAINT ONLY GO DOWN 
         MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
