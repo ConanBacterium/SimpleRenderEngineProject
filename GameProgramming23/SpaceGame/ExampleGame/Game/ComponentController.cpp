@@ -24,7 +24,7 @@ namespace ExampleGame {
 
 		parent->rotation += rotSpeed * deltaTime;
 
-		parent->position = parent->position + movDirection * movAmount;
+		//parent->position = parent->position + movDirection * movAmount;
 		//parent->position = basePos + movDirection * movAmount * glm::sin(movSpeed * engine->GetTime());
 	}
 }

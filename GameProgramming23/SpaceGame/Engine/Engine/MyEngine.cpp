@@ -4,12 +4,15 @@
 
 #include "sre/RenderPass.hpp"
 #include <iostream>
+#include <chrono>
 
 //#include "../../ExampleGame/Game/enums.h"
 
 
 namespace MyEngine {
 	Engine* Engine::_instance = nullptr;
+
+	std::chrono::high_resolution_clock::time_point start_time;
 
 	Engine::Engine() {
 		assert(_instance == nullptr && " Only one instance of MyEngine::Engine allowed!");
@@ -26,6 +29,10 @@ namespace MyEngine {
 
 	void Engine::Init() {
 		// initializes random generator
+
+
+		start_time = std::chrono::high_resolution_clock::now();
+
 		std::srand(std::time(nullptr));
 
 		_camera.setWindowCoordinates();
@@ -38,47 +45,67 @@ namespace MyEngine {
 	}
 
 	void Engine::DetectCollisions() {
+		//wait for 2 seconds to activate the colision
 
-		std::queue<int> deleteQueue;
+		// Get the current time point after the task
+		auto end_time = std::chrono::high_resolution_clock::now();
 
-		for (auto it1 = _root->_children.begin(); it1 != _root->_children.end();) {
-			bool it1Deleted = false;
-			for (auto it2 = std::next(it1); it2 != _root->_children.end();) {
-				float dist = glm::distance((*it1)->position, (*it2)->position);
-				if (dist <= (*it1)->radius + (*it2)->radius) {
-					if ((*it1)->GetName().find("Meteor") != std::string::npos && (*it2)->GetName().find("Meteor") != std::string::npos) {
-						printf("Meteors collided");
-					}else {
-						std::cout << (*it2)->GetName() << std::endl;
+		// Calculate the duration (time taken)
+		auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
+
+		if (duration.count() >= 2000) {
+			printf("Timer finished");
+			std::queue<int> deleteQueue;
+
+			for (auto it1 = _root->_children.begin(); it1 != _root->_children.end();) {
+				bool it1Deleted = false;
+				for (auto it2 = std::next(it1); it2 != _root->_children.end();) {
+					float dist = glm::distance((*it1)->position, (*it2)->position);
+					if (dist <= (*it1)->radius + (*it2)->radius) {
+						if ((*it1)->GetName().find("Meteor") != std::string::npos && (*it2)->GetName().find("Meteor") != std::string::npos) {
+							//printf("Meteors collided");
+							++it2;
+							it1Deleted = false;
+						}
+						else {
+							std::cout << (*it2)->GetName() << std::endl;
 
 
-						printf("COLLISION\n");
-						(*it1)->_collisions.push(*it2);
-						(*it2)->_collisions.push(*it1);
+							printf("COLLISION\n");
+							(*it1)->_collisions.push(*it2);
+							(*it2)->_collisions.push(*it1);
 
-						// Add it1 and it2 to deleteQueue
-						deleteQueue.push(std::distance(_root->_children.begin(), it1));
-						deleteQueue.push(std::distance(_root->_children.begin(), it2));
+							// Add it1 and it2 to deleteQueue
+							deleteQueue.push(std::distance(_root->_children.begin(), it1));
+							deleteQueue.push(std::distance(_root->_children.begin(), it2));
 
-						// Erase it2 and update the iterator
-						it2 = _root->_children.erase(it2);
-						it1Deleted = true;
+							// Erase it2 and update the iterator
+							it2 = _root->_children.erase(it2);
+							it1Deleted = true;
+						}
+
+
 					}
+					else {
+						++it2;
+					}
+				}
 
-
+				if (it1Deleted) {
+					it1 = _root->_children.erase(it1);
 				}
 				else {
-					++it2;
+					++it1;
 				}
 			}
-			if (it1Deleted) {
-				it1 = _root->_children.erase(it1);
-			}
-			else {
-				++it1;
-			}
+
+		}
+		else {
+			printf("Waiting for timer");
 		}
 
+
+		
 
 		
 		/*
@@ -123,7 +150,7 @@ namespace MyEngine {
 		++frame;
 		time += deltaTime;
 		_root->Update(deltaTime);
-		//DetectCollisions();
+		DetectCollisions();
 	}
 
 	void Engine::Render()
