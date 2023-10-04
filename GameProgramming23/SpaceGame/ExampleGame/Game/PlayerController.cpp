@@ -3,7 +3,6 @@
 #include "sre/SDLRenderer.hpp"
 
 namespace ExampleGame {
-    glm::vec2 basePos;
 
     void PlayerController::KeyEvent(SDL_Event& event) {
         // Implement your key event logic specific to PlayerController here
@@ -51,6 +50,16 @@ namespace ExampleGame {
         }
     }
 
+    glm::vec2 PlayerController::GetPosition(float set_x, float set_y) {
+        MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
+        MyEngine::GameObject* parent = GetGameObject();
+
+        x = set_x;
+        y = set_y;
+
+        return glm::vec2(x, y);
+    }
+
     void PlayerController::Update(float deltaTime) {
         MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
         MyEngine::GameObject* parent = GetGameObject();
@@ -67,16 +76,25 @@ namespace ExampleGame {
         parent->rotation += rotSpeed * deltaTime;
         parent->position = parent->position + movDirection * movAmount*deltaTime;
         basePos = parent->position;
+        PlayerController::GetPosition(parent->position.x, parent->position.y);
     }
 
+
+    /* 
     glm::vec2 PlayerController::GetPosition() {
+
         MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
         MyEngine::GameObject* parent = GetGameObject();
+        printf("Getting Position X: ");
+        printf(std::to_string(x).c_str());
 
-        printf("\nPlayer return func:");
-        printf((std::to_string(parent->position.x)).c_str());
-        printf((std::to_string(parent->position.y)).c_str());
-        return basePos;
+        printf("Getting Position Y: ");
+        printf(std::to_string(y).c_str());
+
+        auto pos = glm::vec2(x, y);
+
+        return pos;
     }
+    */
 
 }  // namespace ExampleGame
