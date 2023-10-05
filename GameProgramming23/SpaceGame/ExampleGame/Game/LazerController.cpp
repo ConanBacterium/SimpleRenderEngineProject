@@ -12,13 +12,14 @@ namespace ExampleGame {
         parent->position = parent->position + movDirection * movAmount * deltaTime;
     }
 
-    void LazerController::Init(glm::vec2 shipPos, glm::vec2 shipDirection) {
+    void LazerController::InitLazer(glm::vec2 shipPos, glm::vec2 shipDirection) {
         MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
 
         basePos = shipPos + shipDirection * movAmount;
 
         MyEngine::GameObject* parent = GetGameObject();
-        //printf(*parent->getName);
+        printf("LazerController init getting name of parent ");
+        printf(parent->GetName().c_str()); // cast to char[]
         parent->position = basePos;
 
 

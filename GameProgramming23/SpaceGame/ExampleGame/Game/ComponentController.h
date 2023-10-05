@@ -16,8 +16,8 @@ namespace ExampleGame {
 		glm::vec2 position;
 		float rotation;
 
-		void Init() override;
-		void Update(float) override;
+		virtual void Init() override;
+		virtual void Update(float) override;
 
 		void SetRotSpeed(float speed) {
 			rotSpeed = speed;

@@ -59,7 +59,6 @@ int main() {
 	meteor1->radius = 50;
 
 	// LAZER
-	
 	auto lazer = engine.CreateGameObject("Lazer");
 	auto lazerController = std::shared_ptr<ExampleGame::LazerController>(new ExampleGame::LazerController());
 	auto lazerRenderer = std::make_shared<ExampleGame::ComponentRendererSprite>();
