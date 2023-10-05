@@ -6,17 +6,14 @@
 namespace ExampleGame {
 
     class PlayerController : public ComponentController {
+    protected: 
+        glm::vec2 basePos;
     public:
-
-        glm::vec2 basePos = glm::vec2(200, 100);
-        float x, y;
-
         virtual void KeyEvent(SDL_Event& e) override;
         virtual void Update(float deltaTime) override;
 
-        virtual glm::vec2 GetPosition(float x, float y);
-
-
+        virtual glm::vec2 GetPosition();
+        // ... Any other member functions or data members specific to PlayerController ...
     };
 
 }  // namespace ExampleGame

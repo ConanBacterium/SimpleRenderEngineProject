@@ -10,7 +10,7 @@ namespace ExampleGame {
 		float movSpeed = 5;
 		float movAmount = 0;
 		glm::vec2 movDirection = glm::vec2(1, 0);
-		//glm::vec2 basePos = glm::vec2(200,100);
+		glm::vec2 basePos;
 		//std::chrono::high_resolution_clock start;
 
 

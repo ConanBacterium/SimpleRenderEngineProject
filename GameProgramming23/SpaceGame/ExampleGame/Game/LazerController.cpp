@@ -31,25 +31,17 @@ namespace ExampleGame {
         MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
         MyEngine::GameObject* parent = GetGameObject();
 
-        //update pos of traveling
-        parent->position = LazerController::basePos;
-
-
     }
 
     void LazerController::InitLazer() {
         MyEngine::Engine* engine = MyEngine::Engine::GetInstance();
         MyEngine::GameObject* parent = GetGameObject();
 
-    
-        parent->position = LazerController::basePos;
-
+        auto basePos = PlayerController::GetPosition();
 
 
         //get parent position
         printf("Init Lazer\n");
-
-
-
+        printf((std::to_string(basePos.x)).c_str());
     }
 }
