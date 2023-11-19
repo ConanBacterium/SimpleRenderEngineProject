@@ -54,7 +54,7 @@ namespace MyEngine {
 		auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
 
 		if (duration.count() >= 2000) {
-			printf("Timer finished");
+			//printf("Timer finished");
 			std::queue<int> deleteQueue;
 
 			for (auto it1 = _root->_children.begin(); it1 != _root->_children.end();) {
@@ -101,7 +101,7 @@ namespace MyEngine {
 
 		}
 		else {
-			printf("Waiting for timer");
+			//printf("Waiting for timer");
 		}
 
 

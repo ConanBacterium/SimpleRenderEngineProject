@@ -63,14 +63,14 @@ namespace ExampleGame {
         float randomX_start = dist(gen);
         glm::vec2 startPos = glm::vec2(randomX_start, HEIGHT);
           
-        printf("Start pos: x: %f,y: %f \n", randomX_start, HEIGHT);
+        //printf("Start pos: x: %f,y: %f \n", randomX_start, HEIGHT);
 
         //get me the lowest point and get me a random x number within the screen range
         float randomX_endPos = dist(gen);
         glm::vec2  endPos = glm::vec2(randomX_endPos, 0.0f);
         //connect these 2 generated points for a movind direction of an object
 
-        printf("End pos: x: %f,y: %f \n", randomX_endPos, 0.0);
+        //printf("End pos: x: %f,y: %f \n", randomX_endPos, 0.0);
 
 
         ComponentController::movDirection = glm::normalize(endPos - startPos);

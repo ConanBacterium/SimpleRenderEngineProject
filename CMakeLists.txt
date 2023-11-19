@@ -192,3 +192,5 @@ endif(USE_SRE_PROJECT_EXAMPLES)
 
 add_subdirectory(GameProgramming23/Ex3)
 add_subdirectory(GameProgramming23/SpaceGame)
+add_subdirectory(GameProgramming23/Ex10)
+
